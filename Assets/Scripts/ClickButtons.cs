@@ -5,21 +5,28 @@ using UnityEngine.EventSystems;
 
 public class ClickButtons : MonoBehaviour
 {
- public   BuildingCreator creator;
+ private   BuildingCreator creator;
     string nameOfBuilding;
-    [SerializeField]
-    GameObject blockField;
+  public  bool changed; 
+   
     private void Start()
     {
-        GameObject ho = GameObject.Find("BuildCreator");
-         creator = (BuildingCreator)ho.GetComponent(typeof(BuildingCreator));
-       
-       
+        GameObject bc = GameObject.Find("BuildCreator");
+         creator = (BuildingCreator)bc.GetComponent(typeof(BuildingCreator));     
+        changed = true; 
     }
     public void Onclick()
-    {       
-           nameOfBuilding= EventSystem.current.currentSelectedGameObject.name;
-         creator.createBuilding(nameOfBuilding);
+    {      
+        if (changed)
+        {           
+            nameOfBuilding = EventSystem.current.currentSelectedGameObject.name;
+            creator.createBuilding(nameOfBuilding);
+            changed = false;          
+        }
+    }
+ public void changeState()
+    {
+        changed = true;
     }
 
 }

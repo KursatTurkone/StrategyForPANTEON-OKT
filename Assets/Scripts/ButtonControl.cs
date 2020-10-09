@@ -5,26 +5,40 @@ using System.Threading.Tasks;
 using UnityEngine.UI;
 
 namespace Assets.Scripts
-{
+{    
     class ButtonControl :MonoBehaviour
     {
         [SerializeField]
-        private Text barrackText;
-      
+        private GameObject buttonTamplate;
+        private HashSet<string> set = new HashSet<string>();
+        bool doItOnce =false; 
 
-        private string myTextString; 
-        public void SetText(string textString)
+
+        public void ButtonCreate(string[] units)
         {
-           
-            myTextString = textString;
-            
-            barrackText.text = textString;
+
+            if (units != null)
+            {
+                if (!doItOnce) {
+                    for (int i = 0; i < units.Length; i++)
+                    {
+                        GameObject button = Instantiate(buttonTamplate) as GameObject;
+                        button.SetActive(true);
+                        button.GetComponent<ButtonListButton>().SetText(units[i]);
+                        button.transform.SetParent(buttonTamplate.transform.parent, false);
+                        doItOnce = true;
+                    }
+                }
+               
+            }
+            else
+            {
+                print("boş");
+            }
+
+            }
         }
-       
-        public void OnClick()
-        {
-           
-           
-        }
+
+
     }
-}
+

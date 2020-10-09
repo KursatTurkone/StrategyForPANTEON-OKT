@@ -64,19 +64,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BuildingCreator.cs" />
+    <Compile Include="Assets\Scripts\BuildingModel.cs" />
     <Compile Include="Assets\Scripts\BuildingPlacement.cs" />
+    <Compile Include="Assets\Scripts\BuildingProcessor.cs" />
     <Compile Include="Assets\Scripts\Buildings.cs" />
     <Compile Include="Assets\Scripts\ButtonControl.cs" />
+    <Compile Include="Assets\Scripts\ButtonListButton.cs" />
+    <Compile Include="Assets\Scripts\CharacterMovement.cs" />
     <Compile Include="Assets\Scripts\ClickButtons.cs" />
     <Compile Include="Assets\Scripts\DragBuilding.cs" />
     <Compile Include="Assets\Scripts\GridController.cs" />
     <Compile Include="Assets\Scripts\GridFieldController.cs" />
     <Compile Include="Assets\Scripts\GridMap.cs" />
+    <Compile Include="Assets\Scripts\Grids.cs" />
     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\ObjectCreator.cs" />
     <Compile Include="Assets\Scripts\ObjectPooler.cs" />
+    <Compile Include="Assets\Scripts\PathNode.cs" />
+    <Compile Include="Assets\Scripts\Pathfinding.cs" />
+    <Compile Include="Assets\Scripts\PickModel.cs" />
     <Compile Include="Assets\Scripts\ScrollButton.cs" />
     <Compile Include="Assets\Scripts\SeparatorAttribute.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
+    <Compile Include="Assets\Scripts\Testings.cs" />
+    <Compile Include="Assets\Scripts\UnitProcessor.cs" />
     <Compile Include="Assets\_\Base\BaseScripts\GameHandler_Setup.cs" />
     <Compile Include="Assets\_\Stuff\CodeMonkey\Assets.cs" />
     <Compile Include="Assets\_\Stuff\CodeMonkey\CMDebug.cs" />
