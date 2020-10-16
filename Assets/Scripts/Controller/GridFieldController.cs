@@ -11,10 +11,6 @@ public class GridFieldController : MonoBehaviour
     private int value;
     public int sortingOrder = 3;
     private SpriteRenderer sprite;
-    void pullDropped()
-    {
-       // DragBuilding.Publish += 
-    }
     void Start()
     {
         GameObject gObj = GameObject.Find("GridController");

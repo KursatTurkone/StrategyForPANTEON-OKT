@@ -6,9 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ClickButtons : MonoBehaviour
-{
-    
- private   BuildingCreator creator;
+{  
     DragBuilding dragBuilding;
     string nameOfBuilding;
   public  bool changed; 

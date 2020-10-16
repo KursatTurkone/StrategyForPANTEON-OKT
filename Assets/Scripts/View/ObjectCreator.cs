@@ -26,9 +26,7 @@ public class ObjectCreator : MonoBehaviour
         this.vector = vector;
     }
     public void lengthGetter(int height, int weight)
-    {
-        
-        print(height+" "+weight);
+    {            
         float yedekx, yedeky;
         bool check=true; 
      

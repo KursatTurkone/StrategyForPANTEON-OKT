@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace Assets.Scripts
 {
     class Creator
-    {
-      
+    {      
             public CreatorAbstract factoryMethod(buildingKindEnum.buildingKind kind)
             {
                 CreatorAbstract creator = null;
@@ -22,9 +21,7 @@ namespace Assets.Scripts
                         break;
                 }
                 return creator;
-            }
-        
-        
+            }               
     }
 
 }

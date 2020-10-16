@@ -9,18 +9,18 @@ public class CharacterMovement : MonoBehaviour
     private const float speed = 100f;
     private int currentPathIndex;
     private List<Vector3> pathVectorList;
-    CharacterPick dragBuilding;
+    PickObjects dragBuilding;
     private IEnumerator coroutine;
     bool wait = false; 
 
     void Start()
     {      
         //coroutine for character 
-        coroutine = WaitAndStart(1.0f);
+        coroutine = WaitAndStart(0.5f);
         StartCoroutine(coroutine); 
         Transform soldier = transform.Find("soldier");     
         GameObject drg = GameObject.Find("Main Camera");
-        dragBuilding = (CharacterPick)drg.GetComponent(typeof(CharacterPick));
+        dragBuilding = (PickObjects)drg.GetComponent(typeof(PickObjects));
     }
     private IEnumerator WaitAndStart(float waitTime)
     {

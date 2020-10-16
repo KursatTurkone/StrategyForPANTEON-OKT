@@ -45,7 +45,6 @@ public class Pathfinding
             // Invalid Path
             return null;
         }
-
         openList = new List<PathNode> { startNode };
         closedList = new List<PathNode>();
 

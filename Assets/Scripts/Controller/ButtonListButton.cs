@@ -23,7 +23,6 @@ public class ButtonListButton : MonoBehaviour
     }
     public void OnClick()
     {
-        print("girdi");
         nameOfButton = EventSystem.current.currentSelectedGameObject.name;   
             (height, weight) = unitOperations.unitSet(nameOfButton);
         if (height > 0 && weight > 0)
