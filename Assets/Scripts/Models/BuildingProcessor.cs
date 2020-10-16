@@ -11,8 +11,7 @@ using UnityEngine;
             GameObject block;
             string name;
             int height, weight;
-            bool createUnits;
-            string nameOfBuilding;               
+             
             public string getName()
             {
                 return name;

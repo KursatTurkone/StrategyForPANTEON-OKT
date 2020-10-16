@@ -5,24 +5,27 @@ using UnityEngine.UI;
 
 public class ScrollButton : MonoBehaviour
 {
-  
+   
+   
     public RectTransform panel;
+    //Object pool
     public Button[] bttn;
     public RectTransform center;
+  
    
     public float[] distance;  
     public float[] distReposition;
-    private bool dragging = false; 
+    private bool dragging = false;  
     private int bttnDistance;   
    private int minButtonNum;   
     private int bttnLength;
     void Start()
     {
-
+      
         bttnLength = bttn.Length;
+      
         distance = new float[bttnLength];
         distReposition = new float[bttnLength];
-
         // Get distance between buttons
         bttnDistance = (int)Mathf.Abs(bttn[0].GetComponent<RectTransform>().anchoredPosition.y - bttn[1].GetComponent<RectTransform>().anchoredPosition.y);
    
@@ -31,30 +34,36 @@ public class ScrollButton : MonoBehaviour
 
     void Update()
     {
-       
+        //Changes location and visibility 
         for (int i = 0; i < bttn.Length; i++)
         {
-            distReposition[i] = center.GetComponent<RectTransform>().position.y - bttn[i].GetComponent<RectTransform>().position.y;
-          //  print(distReposition[0]);
-            distance[i] = Mathf.Abs(distReposition[i]);
-            
+            distReposition[i] = center.GetComponent<RectTransform>().position.y - bttn[i].GetComponent<RectTransform>().position.y;       
+            distance[i] = Mathf.Abs(distReposition[i]);           
 			if (distReposition[i] > 200)
 			{
 				float curX = bttn[i].GetComponent<RectTransform>().anchoredPosition.x;
 				float curY = bttn[i].GetComponent<RectTransform>().anchoredPosition.y;
-
 				Vector2 newAnchoredPos = new Vector2 (curX , curY + (bttnLength * bttnDistance));
 				bttn[i].GetComponent<RectTransform>().anchoredPosition = newAnchoredPos;
-			}
+                //lock visibility
+                bttn[i].gameObject.SetActive(false);
 
-			if (distReposition[i] < -200)
+            }
+            if (-100< distReposition[i]&& distReposition[i] < 100)
+            {
+                bttn[i].gameObject.SetActive(true);
+                //unlock visibility
+            }
+            if (distReposition[i] < -200)
 			{
 				float curX = bttn[i].GetComponent<RectTransform>().anchoredPosition.x;
 				float curY = bttn[i].GetComponent<RectTransform>().anchoredPosition.y;
 
 				Vector2 newAnchoredPos = new Vector2 (curX , curY - (bttnLength * bttnDistance));
 				bttn[i].GetComponent<RectTransform>().anchoredPosition = newAnchoredPos;
-			}
+                //lock visibility
+                bttn[i].gameObject.SetActive(false);
+            }
         }
         float minDistance = Mathf.Min(distance);
      

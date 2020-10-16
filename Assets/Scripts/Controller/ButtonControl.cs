@@ -11,32 +11,45 @@ namespace Assets.Scripts
         [SerializeField]
         private GameObject buttonTamplate;
         private HashSet<string> set = new HashSet<string>();
-        bool doItOnce =false; 
-
-
+       public bool doItOnce =false;
+        bool tryonce = false;
+        GameObject blc;
+        private void Start()
+        {
+            blc = GameObject.Find("ButtonListContent");
+        }
         public void ButtonCreate(string[] units)
         {
 
             if (units != null)
             {
                 if (!doItOnce) {
+                  
                     for (int i = 0; i < units.Length; i++)
                     {
+                      // if(blc.transform.GetChild(i).gameObject.name==units[i])
                         GameObject button = Instantiate(buttonTamplate) as GameObject;
                         button.SetActive(true);
                         button.GetComponent<ButtonListButton>().SetText(units[i]);
                         button.transform.SetParent(buttonTamplate.transform.parent, false);
                         doItOnce = true;
+                    
                     }
                 }
                
             }
-            else
-            {
-                print("boş");
             }
-
-            }
+        public void DestroyButtons()
+        {
+            int count = 1;
+           
+                while(count<blc.transform.childCount)
+                {
+                    GameObject.Destroy(blc.transform.GetChild(count).gameObject);
+                    tryonce = true;
+                    count++;
+                }
+        }
         }
 
 

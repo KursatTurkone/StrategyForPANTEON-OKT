@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,29 +9,28 @@ public class ClickButtons : MonoBehaviour
 {
     
  private   BuildingCreator creator;
+    DragBuilding dragBuilding;
     string nameOfBuilding;
   public  bool changed; 
    
     private void Start()
     {
-        GameObject bc = GameObject.Find("BuildCreator");
-         creator = (BuildingCreator)bc.GetComponent(typeof(BuildingCreator));     
-        changed = true; 
+        changed = true;
+        GameObject drg = GameObject.Find("Square(Clone)");
+        if(drg!=null)
+        dragBuilding = (DragBuilding)drg.GetComponent(typeof(DragBuilding));
     }
     public void Onclick()
     {      
         if (changed)
-        {
-         
-            nameOfBuilding = EventSystem.current.currentSelectedGameObject.name;
-           CreatePub.OnClickFunction(nameOfBuilding);
-           
-           
-           // creator.createBuilding(nameOfBuilding);
-            changed = false;          
+        {           
+                nameOfBuilding = EventSystem.current.currentSelectedGameObject.name;          
+            CreatePub.OnClickFunction(nameOfBuilding);
+                changed = false;               
         }
     }
- public void changeState()
+  
+    public void changeState()
     {
         changed = true;
     }

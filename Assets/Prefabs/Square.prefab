@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5544389331265222371}
   - component: {fileID: -7160263119803632398}
   - component: {fileID: 7599186685054709584}
-  - component: {fileID: -4160349994314973039}
+  - component: {fileID: -1953913877799731728}
   m_Layer: 0
   m_Name: Square
   m_TagString: block
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrder: 1
---- !u!114 &-4160349994314973039
+--- !u!114 &-1953913877799731728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,3 +136,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropped: 0
+  characterSelected: 0
+  characterMovement: {fileID: 0}

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - block
   - building
+  - character
+  - ExitPick
   layers:
   - Default
   - TransparentFX

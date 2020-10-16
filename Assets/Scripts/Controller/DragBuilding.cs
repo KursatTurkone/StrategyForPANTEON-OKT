@@ -1,12 +1,13 @@
 ﻿using Assets.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class DragBuilding : MonoBehaviour
 {
     ClickButtons ClickButtons;
-    BuildingCreator buildingCreator;
     private bool dragging = false;
     public bool dropped = false;
     private Vector3 offset;
@@ -14,22 +15,10 @@ public class DragBuilding : MonoBehaviour
     private float dist;
     RaycastHit2D ray;
     Vector3 truePos;
-    private string[] units;
-    ButtonControl buttonControl;
-    bool characterSelected=false; 
-  
-    ObjectCreator objectCreator;
-    Vector3 parentLocation; 
     private void Start()
-    {
-        GameObject bCntrl= GameObject.Find("ButtonScrollList");
-        buttonControl = (ButtonControl)bCntrl.GetComponent(typeof(ButtonControl));
+    {  
         GameObject dc = GameObject.Find("Controller");
         ClickButtons = (ClickButtons)dc.GetComponent(typeof(ClickButtons));
-        GameObject bc = GameObject.Find("BuildCreator");
-        buildingCreator = (BuildingCreator)bc.GetComponent(typeof(BuildingCreator));
-        objectCreator = (ObjectCreator)bc.GetComponent(typeof(ObjectCreator));
-       
     }
     void Update()
     {
@@ -43,10 +32,6 @@ public class DragBuilding : MonoBehaviour
 
         if (!dropped)
         {
-
-
-
-
             if (touch.phase == TouchPhase.Began)
             {
 
@@ -77,37 +62,8 @@ public class DragBuilding : MonoBehaviour
                 dropped = true;
                 dragging = false;
             }
-        }
-        else
-        {
-            if (touch.phase == TouchPhase.Began)
-            {
-                   Vector2 worldPoint = Camera.main.ScreenToWorldPoint(touch.position);
-                    ray = Physics2D.Raycast(worldPoint, Vector2.zero);
-                    if (ray.collider != null && ray.collider.tag == "building")
-                    {
-                    characterSelected = false;
-                    dragging = false;
-                        string name = ray.transform.parent.name;
-                        units=buildingCreator.unitGetter(name);
-                           parentLocation = ray.transform.parent.transform.position;
-                    objectCreator.buildingLocation(parentLocation);
-                
-                        buttonControl.ButtonCreate(units);
-                    
-
-                    }
-                    else if(ray.collider != null && ray.collider.tag == "character")
-                {
-                    characterSelected = true; 
-
-                }
-               
-                
-            }
-        }
+        }   
     }
-    
     private Vector3 GetTouchWorldPos()
     {
         Vector3 mousePoint = Input.mousePosition;

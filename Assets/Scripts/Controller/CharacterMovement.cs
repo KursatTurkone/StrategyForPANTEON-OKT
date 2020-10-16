@@ -1,29 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey.Utils; 
+using CodeMonkey.Utils;
+using Assets.Scripts;
 
 public class CharacterMovement : MonoBehaviour
 {
     private const float speed = 100f;
     private int currentPathIndex;
     private List<Vector3> pathVectorList;
- 
-    // Start is called before the first frame update
+    CharacterPick dragBuilding;
+    private IEnumerator coroutine;
+    bool wait = false; 
+
     void Start()
+    {      
+        //coroutine for character 
+        coroutine = WaitAndStart(1.0f);
+        StartCoroutine(coroutine); 
+        Transform soldier = transform.Find("soldier");     
+        GameObject drg = GameObject.Find("Main Camera");
+        dragBuilding = (CharacterPick)drg.GetComponent(typeof(CharacterPick));
+    }
+    private IEnumerator WaitAndStart(float waitTime)
     {
-        Transform soldier = transform.Find("soldier");
+        yield return new WaitForSeconds(waitTime);    
+        wait = true;       
     }
 
-    // Update is called once per frame
+
+    [System.Obsolete]
     void Update()
-    {
+    {      
         HandleMovement();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)&&dragBuilding.characterSelected&&wait)
         {
+            //getLocation to move 
             SetTargetPosition(UtilsClass.GetMouseWorldPosition());
         }
-
     }
     public Vector3 GetPosition()
     {
@@ -31,9 +45,9 @@ public class CharacterMovement : MonoBehaviour
     }
     public void SetTargetPosition(Vector3 targetPosition)
     {
+        //setLocation to move 
         currentPathIndex = 0;
         pathVectorList = Pathfinding.Instance.FindPath(GetPosition(), targetPosition);
-
         if (pathVectorList != null && pathVectorList.Count > 1)
         {
             pathVectorList.RemoveAt(0);
@@ -58,7 +72,6 @@ public class CharacterMovement : MonoBehaviour
                 if (currentPathIndex >= pathVectorList.Count)
                 {
                     StopMoving();
-
                 }
             }
         }

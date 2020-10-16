@@ -18,9 +18,7 @@ public class GridController : MonoBehaviour
 
 
     void Start()
-    {
-       
-
+    {      
         grid  = new GridMap(weight, height,pixelSize,vector);
         pathfinding = new Pathfinding(weight, height,pixelSize,vector);
 
@@ -35,23 +33,6 @@ public class GridController : MonoBehaviour
         }
 
     }
-
- 
-    void Update()
-    {
-      
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log(grid.GetValue(UtilsClass.GetMouseWorldPosition()));
-        
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            grid.SetValue(UtilsClass.GetMouseWorldPosition(), 2);
-         
-        }
-    }
     public int getValue(Vector2 vector)
     {
         int value; 
@@ -60,18 +41,14 @@ public class GridController : MonoBehaviour
         return value;
     }
     public void setValue(Vector2 vector)
-    {
-       
-       grid.SetValue(vector,2);     
+    {      
+      grid.SetValue(vector,2);     
         pathfinding.GetGrid().GetXY(vector, out int x, out int y);
         pathfinding.GetNode(x, y).SetIsWalkable(!pathfinding.GetNode(x, y).isWalkable);
-
-
     }
     public float getpixel()
     {
         return pixelSize; 
-
     }
 
 }

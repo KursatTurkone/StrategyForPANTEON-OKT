@@ -14,11 +14,12 @@ public class ObjectCreator : MonoBehaviour
     Vector3 vector;
     Vector3[] vectors; 
     GridController gridController;
+    int counter=0;
+    string name; 
     private void Start()
     {
         GameObject gObj = GameObject.Find("GridController");
-        gridController = (GridController)gObj.GetComponent(typeof(GridController));
-       
+        gridController = (GridController)gObj.GetComponent(typeof(GridController));                   
     }
     public void buildingLocation(Vector3 vector)
     {
@@ -49,7 +50,9 @@ public class ObjectCreator : MonoBehaviour
                 tryLoc.y = yedeky;
                 if (gridController.getValue(tryLoc) == 1&&check)
                 {
-                   
+
+                    Unit.name="Character"+counter;
+                    counter++;
                     Instantiate(Unit,tryLoc,Quaternion.identity);
                     check = false; 
                     break; 
@@ -59,6 +62,8 @@ public class ObjectCreator : MonoBehaviour
                 tryLoc.y = yedeky - cellSize2;
                 if (gridController.getValue(tryLoc) == 1&&check)
                 {
+                    Unit.name = name + counter;
+                    counter++;
                     check = false;
                     Instantiate(Unit, tryLoc, Quaternion.identity);
                     break;
